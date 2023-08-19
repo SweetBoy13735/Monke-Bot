@@ -22,7 +22,8 @@
   },
   "homepage": "https://github.com/SweetBoy13735/Monke-Bot#readme",
   "dependencies": {
-    "discord.js": "^14.13.0"
+    "discord.js": "^14.13.0",
+    "dotenv": "^16.3.1"
   },
   "devDependencies": {
     "eslint": "^8.47.0"
