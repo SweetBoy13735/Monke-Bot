@@ -10,7 +10,7 @@ require("dotenv").config();
 const { Client, GatewayIntentBits, Events } = require("discord.js");
 
 // CODE BODY
-// Create a new client instance
+// Create a new Discord gateway client instance
 const client = new Client({ intents: [GatewayIntentBits.Guilds] });
 
 // Execute this handler once when the client is ready
