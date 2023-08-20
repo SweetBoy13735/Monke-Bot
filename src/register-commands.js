@@ -58,7 +58,5 @@ const rest = new REST().setToken(process.env.DISCORD_TOKEN);
 		}
 
 		console.log("Registration successful!");
-	} catch (error) {
-		console.error(error);
-	}
+	} catch (error) { console.error(error.stack); }
 })();
