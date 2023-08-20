@@ -12,17 +12,17 @@ const Path = require("node:path");
 const { REST, Routes } = require("discord.js");
 
 // Project modules
-const { guilds } = require("./config.json");
+const { guildIDs } = require("./config.json");
 
 // CODE BODY
 const commands = [];
 
 // Grab all the command folders and loop through them,...
-const foldersPath = Path.join(__dirname, "commands"), commandFolders = FileSystem.readdirSync(foldersPath);
+const commandfoldersPath = Path.join(__dirname, "commands"), commandFolders = FileSystem.readdirSync(commandfoldersPath);
 
 for (const folder of commandFolders) {
 	// then grab all the command files and loop through those,...
-	const commandsPath = Path.join(foldersPath, folder), commandFiles = FileSystem.readdirSync(commandsPath).filter(file => file.endsWith(".js"));
+	const commandsPath = Path.join(commandfoldersPath, folder), commandFiles = FileSystem.readdirSync(commandsPath).filter(file => file.endsWith(".js"));
 
 	for (const file of commandFiles) {
 		// then compile the command data for registration.
@@ -41,10 +41,10 @@ const rest = new REST().setToken(process.env.DISCORD_TOKEN);
 	try {
 		const { id: appID } = await rest.get(Routes.currentApplication());
 
-		if (guilds.length > 0) {
-			console.log(`Registering ${commands.length} commands in ${guilds.length} guild(s)...`);
+		if (guildIDs.length > 0) {
+			console.log(`Registering ${commands.length} commands in ${guildIDs.length} guild(s)...`);
 
-			for (const guildID of guilds) {
+			for (const guildID of guildIDs) {
 				const { name: guildName } = await rest.get(Routes.guild(guildID)), data = await rest.put(Routes.applicationGuildCommands(appID, guildID), { body: commands });
 
 				console.log(`Registered ${data.length} commands in "${guildName}".`);

@@ -9,7 +9,7 @@ require("dotenv").config();
 
 const FileSystem = require("node:fs");
 const Path = require("node:path");
-const { Client, GatewayIntentBits, Collection, Events } = require("discord.js");
+const { Client, GatewayIntentBits, Collection } = require("discord.js");
 
 // CODE BODY
 // Create a new Discord gateway client instance
@@ -19,11 +19,11 @@ const client = new Client({ intents: [GatewayIntentBits.Guilds] });
 client.commands = new Collection();
 
 // Grab all the command folders and loop through them,...
-const foldersPath = Path.join(__dirname, "commands"), commandFolders = FileSystem.readdirSync(foldersPath);
+const commandfoldersPath = Path.join(__dirname, "commands"), commandFolders = FileSystem.readdirSync(commandfoldersPath);
 
 for (const folder of commandFolders) {
 	// then grab all the command files and loop through those,...
-	const commandsPath = Path.join(foldersPath, folder), commandFiles = FileSystem.readdirSync(commandsPath).filter(file => file.endsWith(".js"));
+	const commandsPath = Path.join(commandfoldersPath, folder), commandFiles = FileSystem.readdirSync(commandsPath).filter(file => file.endsWith(".js"));
 
 	for (const file of commandFiles) {
 		// then compile the command data for execution.
@@ -34,8 +34,17 @@ for (const folder of commandFolders) {
 	}
 }
 
-// Execute this handler once when the client is ready
-client.once(Events.ClientReady, readyClient => { console.log(`Ready! Logged-in as ${readyClient.user.tag}.`); });
+// Event handling
+// Grab all the event files and loop through them,...
+const eventsPath = Path.join(__dirname, "events"), eventFiles = FileSystem.readdirSync(eventsPath).filter(file => file.endsWith(".js"));
+
+for (const file of eventFiles) {
+	// then register the event on the client.
+	const filePath = Path.join(eventsPath, file), event = require(filePath);
+
+	if (event.once) client.once(event.name, (...args) => event.execute(...args));
+	else client.on(event.name, (...args) => event.execute(...args));
+}
 
 // Log-in to Discord using the bot token
 client.login(process.env.DISCORD_TOKEN);
