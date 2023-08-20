@@ -17,15 +17,15 @@ const { guilds } = require("./config.json");
 // CODE BODY
 const commands = [];
 
-// Grab all the command folders, ...
+// Grab all the command folders and loop through them,...
 const foldersPath = Path.join(__dirname, "commands"), commandFolders = FileSystem.readdirSync(foldersPath);
 
 for (const folder of commandFolders) {
-	// loop through them and grab all the command files, ...
+	// then grab all the command files and loop through those,...
 	const commandsPath = Path.join(foldersPath, folder), commandFiles = FileSystem.readdirSync(commandsPath).filter(file => file.endsWith(".js"));
 
 	for (const file of commandFiles) {
-		// loop through them and compiles the command data for registration.
+		// then compile the command data for registration.
 		const filePath = Path.join(commandsPath, file), command = require(filePath);
 
 		if ("data" in command && "execute" in command) commands.push(command.data.toJSON());
