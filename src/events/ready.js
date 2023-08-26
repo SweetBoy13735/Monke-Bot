@@ -28,7 +28,7 @@ module.exports = {
 			guilds.forEach(async ({ name, available, systemChannel }) => {
 				try {
 					if (available && systemChannel) await systemChannel.send(readyMessage);
-				} catch (error) { console.error(`An error occurred posting to "${name}" - ${error.message}`); }
+				} catch (error) { console.error(`An error occurred trying to post in "${name} #${systemChannel.name}" - ${error.message}`); }
 			});
 		}
 

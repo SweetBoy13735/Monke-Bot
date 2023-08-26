@@ -9,11 +9,11 @@ require("dotenv").config();
 
 const FileSystem = require("node:fs");
 const Path = require("node:path");
-const { Client, GatewayIntentBits, Collection } = require("discord.js");
+const { Client, GatewayIntentBits: { Guilds, GuildMessages, DirectMessages, MessageContent }, Collection } = require("discord.js");
 
 // CODE BODY
 // Create a new Discord gateway client instance
-const client = new Client({ intents: [GatewayIntentBits.Guilds] });
+const client = new Client({ intents: [Guilds, GuildMessages, DirectMessages, MessageContent] });
 
 // Command handling
 client.commands = new Collection();
