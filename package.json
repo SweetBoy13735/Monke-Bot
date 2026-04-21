@@ -1,20 +1,21 @@
 {
-	"name": "discord.js-bot-boilerplate",
-	"version": "1.0.1",
-	"description": "A template for building Discord bots using Discord.js.",
+	"name": "monke-bot",
+	"version": "1.0.0",
+	"description": "A Discord bot that shit-posts about Monkes. That's it.",
 	"private": true,
 	"keywords": [
 		"Discord",
 		"bot",
-		"Discord.js"
+		"Discord.js",
+		"Mmm-monke"
 	],
-	"homepage": "https://github.com/SweetBoy13735/Discord.js-bot-Boilerplate#readme",
+	"homepage": "https://github.com/SweetBoy13735/Monke-Bot#readme",
 	"bugs": {
-		"url": "https://github.com/SweetBoy13735/Discord.js-bot-Boilerplate/issues"
+		"url": "https://github.com/SweetBoy13735/Monke-Bot/issues"
 	},
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/SweetBoy13735/Discord.js-bot-Boilerplate.git"
+		"url": "git+https://github.com/SweetBoy13735/Monke-Bot.git"
 	},
 	"license": "MIT",
 	"author": "Ramone R. A. Graham",
